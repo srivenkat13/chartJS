@@ -1,11 +1,11 @@
 import Chart from "chart.js/auto";
 
 import { getDimensions } from "./api";
+import { validateQuery } from "@cubejs-client/core";
 
 (async function () {
   const data = await getDimensions();
 
-  console.log(data)
 
   new Chart(document.getElementById("dimensions"), {
     type: "bubble",
@@ -13,10 +13,16 @@ import { getDimensions } from "./api";
       aspectRatio: 1,
       scales: {
         x: {
-          max: 500
+          max: 500,
+          ticks: {
+            callback: value => `${value/100}m`
+          }
         },
         y : {
-          max:500
+          max:500,
+          ticks: {
+            callback: value => `${value/100}m`
+          }
         }
       }
     },

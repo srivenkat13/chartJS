@@ -583,19 +583,25 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _auto = require("chart.js/auto");
 var _autoDefault = parcelHelpers.interopDefault(_auto);
 var _api = require("./api");
+var _core = require("@cubejs-client/core");
 (async function() {
     const data = await (0, _api.getDimensions)();
-    console.log(data);
     new (0, _autoDefault.default)(document.getElementById("dimensions"), {
         type: "bubble",
         options: {
             aspectRatio: 1,
             scales: {
                 x: {
-                    max: 500
+                    max: 500,
+                    ticks: {
+                        callback: (value)=>`${value / 100}m`
+                    }
                 },
                 y: {
-                    max: 500
+                    max: 500,
+                    ticks: {
+                        callback: (value)=>`${value / 100}m`
+                    }
                 }
             }
         },
@@ -615,7 +621,7 @@ var _api = require("./api");
     });
 })();
 
-},{"chart.js/auto":"d8NN9","./api":"8Zgej","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d8NN9":[function(require,module,exports) {
+},{"chart.js/auto":"d8NN9","./api":"8Zgej","@cubejs-client/core":"5eFTf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d8NN9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _chartJs = require("../dist/chart.js");
