@@ -66,6 +66,6 @@ export async function getDimensions() {
   return resultSet.tablePivot().map((row) => ({
     width: parseInt(row["Artworks.widthCm"]),
     height: parseInt(row["Artworks.heightCm"]),
-    count: parseInt(row["Artworks.countCm"]),
+    count: parseInt(row["Artworks.count"]),
   }));
 }

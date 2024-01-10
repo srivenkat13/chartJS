@@ -2,7 +2,6 @@ import { Chart, plugins } from "chart.js/auto";
 
 import { getAquisitionsByYear } from "./api";
 
-
 (async function () {
   // const data = [
   //   { year: 2010, count: 10 },
@@ -21,10 +20,8 @@ import { getAquisitionsByYear } from "./api";
   //   { year: 2023, count: 20 },
   //   { year: 2024, count: 30 },
   // ];
-  
-  const data = await getAquisitionsByYear()
 
-  
+  const data = await getAquisitionsByYear();
 
   new Chart(document.getElementById("acquisitions"), {
     type: "bar",
@@ -50,6 +47,4 @@ import { getAquisitionsByYear } from "./api";
       ],
     },
   });
-
-  
 })();
