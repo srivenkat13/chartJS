@@ -23,7 +23,18 @@ import { getAquisitionsByYear } from "./api";
 
   new Chart(document.getElementById("acquisitions"), {
     type: "bar",
-    
+    // customize the chart
+    options: {
+      animation: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          enabled: false,
+        },
+      },
+    },
     data: {
       labels: data.map((row) => row.year),
       datasets: [
