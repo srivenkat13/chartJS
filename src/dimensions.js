@@ -6,7 +6,6 @@ import { validateQuery } from "@cubejs-client/core";
 (async function () {
   const data = await getDimensions();
 
-
   new Chart(document.getElementById("dimensions"), {
     type: "bubble",
     options: {
@@ -15,27 +14,49 @@ import { validateQuery } from "@cubejs-client/core";
         x: {
           max: 500,
           ticks: {
-            callback: value => `${value/100}m`
-          }
+            callback: (value) => `${value / 100}m`,
+          },
         },
-        y : {
-          max:500,
+        y: {
+          max: 500,
           ticks: {
-            callback: value => `${value/100}m`
-          }
-        }
-      }
+            callback: (value) => `${value / 100}m`,
+          },
+        },
+      },
     },
     data: {
       labels: data.map((x) => x.year),
       datasets: [
         {
-          label: "Dimensions",
-          data: data.map((row) => ({
-            x: row.width,
-            y: row.height,
-            r: row.count,
-          })),
+          label: "Width = Height",
+          data: data
+            .filter((row) => row.width === row.height)
+            .map((row) => ({
+              x: row.width,
+              y: row.height,
+              r: row.count,
+            })),
+        },
+        {
+          label: "Width > Height",
+          data: data
+            .filter((row) => row.width > row.height)
+            .map((row) => ({
+              x: row.width,
+              y: row.height,
+              r: row.count,
+            })),
+        },
+        {
+          label: "Width < Height",
+          data: data
+            .filter((row) => row.width < row.height)
+            .map((row) => ({
+              x: row.width,
+              y: row.height,
+              r: row.count,
+            })),
         },
       ],
     },
